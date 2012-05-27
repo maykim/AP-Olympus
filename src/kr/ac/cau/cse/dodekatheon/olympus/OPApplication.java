@@ -1,24 +1,29 @@
 package kr.ac.cau.cse.dodekatheon.olympus;
 
-import java.util.MissingResourceException;
-import java.util.ResourceBundle;
+import javax.swing.UIManager;
+import kr.ac.cau.cse.dodekatheon.olympus.gui.OPMainWindow;
 
 
 public class OPApplication {
 	
 	private static OPApplication OPApp=null;
-	//private static final String AppName="Olympus";
+	private static final String AppName="Olympus";
 	
-	private ResourceBundle appProperties=null;
+	private OPMainWindow mainWindow=null;
+	private OPApplicationDelegate delegate=null;
 	
 	
 	private OPApplication() {
-		try {
-			appProperties=ResourceBundle.getBundle("kr.ac.cau.cse.dodekatheon.olympus.config.Info");
-		} catch(MissingResourceException mre) {
-			System.err.println("Failed to load application property file.");
-			System.exit(1);
-		}
+		delegate=new OPApplicationDelegate();
+		mainWindow=new OPMainWindow();
+	}
+	
+	public OPApplicationDelegate delegate() {
+		return delegate;
+	}
+	
+	public OPMainWindow GUI() {
+		return mainWindow;
 	}
 	
 	public static OPApplication sharedApplication() {
@@ -28,14 +33,17 @@ public class OPApplication {
 		return OPApp;
 	}
 	
-	/*
 	@Override
 	public String toString() {
 		return AppName;
 	}
-	//*/
+	
 	
 	public static void OPApplicationMain(String[] args) {
+		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		} catch(Exception e) {}
+		
 		OPApp=new OPApplication();
 	}
 	
