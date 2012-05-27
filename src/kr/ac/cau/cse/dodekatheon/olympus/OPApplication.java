@@ -14,7 +14,6 @@ public class OPApplication {
 	
 	
 	private OPApplication() {
-		delegate=new OPApplicationDelegate();
 		mainWindow=new OPMainWindow();
 	}
 	
@@ -44,6 +43,7 @@ public class OPApplication {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch(Exception e) {}
 		
+		OPApp.delegate=new OPApplicationDelegate();
 		OPApp=new OPApplication();
 	}
 	
