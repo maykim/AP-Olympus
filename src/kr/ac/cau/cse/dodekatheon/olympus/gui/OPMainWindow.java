@@ -21,7 +21,7 @@ public final class OPMainWindow extends JFrame {
 		});
 	}
 	
-	private void drawGUI() {
+	public void drawGUI() {
 		//
 		//
 		//

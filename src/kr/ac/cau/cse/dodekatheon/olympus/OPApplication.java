@@ -14,7 +14,7 @@ public class OPApplication {
 	
 	
 	private OPApplication() {
-		mainWindow=new OPMainWindow();
+		delegate=new OPApplicationDelegate();
 	}
 	
 	public OPApplicationDelegate delegate() {
@@ -32,6 +32,10 @@ public class OPApplication {
 		return OPApp;
 	}
 	
+	private void start() {
+		mainWindow=new OPMainWindow();
+	}
+	
 	@Override
 	public String toString() {
 		return AppName;
@@ -43,8 +47,8 @@ public class OPApplication {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch(Exception e) {}
 		
-		OPApp.delegate=new OPApplicationDelegate();
 		OPApp=new OPApplication();
+		OPApp.start();
 	}
 	
 }
